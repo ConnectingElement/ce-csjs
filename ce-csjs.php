@@ -9,7 +9,7 @@
  * that starts the plugin.
  *
  * @link              http://www.connectingelement.co.uk
- * @since             1.0.0
+ * @since             1.0.1
  * @package           CE-CSJS
  *
  * @wordpress-plugin
@@ -17,7 +17,7 @@
  * Plugin URI:        https://wp-plugins.ce-admin.co.uk/ce-csjs
  * Description:       Connecting Element Central Signup JSON Service integration for Wordpress
  * Version:           1.0.0
- * Author:            Christopher Scarre
+ * Author:            Connecting Element
  * Author URI:        http://www.connectingelement.co.uk
  * Text Domain:       ce-csjs
  */

@@ -48,7 +48,7 @@ class CSJSConsumer
 	function __construct($username = null, $password = null)
 	{
 		// Set api url to the development server if aadev or .dev are present in the server name
-		$this->api = (CSJS_USE_DEV) ? self::API_URL_DEV : self::API_URL_LIVE;
+		$this->api = (defined('CSJS_USE_DEV') && CSJS_USE_DEV) ? self::API_URL_DEV : self::API_URL_LIVE;
 
 		$this->username = ($username === null && defined('CSJS_USERNAME')) ? CSJS_USERNAME : $username;
 		$this->password = ($password === null && defined('CSJS_PASSWORD')) ? CSJS_PASSWORD : $password;

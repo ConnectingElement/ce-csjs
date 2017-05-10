@@ -23,32 +23,58 @@
             settings_fields($this->plugin_name); 
             $options = get_option($this->plugin_name);
         ?>
-        <!-- Account ID -->
-        <fieldset>
-            <legend class="screen-reader-text"><span>Account ID</span></legend>
-            <label for="<?php echo $this->plugin_name; ?>-account_id">
-                <span><?php esc_attr_e('Account ID', $this->plugin_name); ?></span>
-            </label>
-            <input type="text" id="<?php echo $this->plugin_name; ?>-account_id" name="<?php echo $this->plugin_name; ?>[account_id]" value="<?php print($options['account_id']); ?>"  class="regular-text"/>
-        </fieldset>
-        
-        <!-- Mailing List ID -->
-        <fieldset>
-            <legend class="screen-reader-text"><span>Mailing List ID</span></legend>
-            <label for="<?php echo $this->plugin_name; ?>-mailing_list_id">
-                <span><?php esc_attr_e('Mailing List ID', $this->plugin_name); ?></span>
-            </label>
-            <input type="text" id="<?php echo $this->plugin_name; ?>-mailing_list_id" name="<?php echo $this->plugin_name; ?>[mailing_list_id]" value="<?php print($options['mailing_list_id']); ?>"  class="regular-text"/>
-        </fieldset>
-        
-        <!-- Source -->
-        <fieldset>
-            <legend class="screen-reader-text"><span>Source</span></legend>
-            <label for="<?php echo $this->plugin_name; ?>-source">
-                <span><?php esc_attr_e('Source', $this->plugin_name); ?></span>
-            </label>
-            <input type="text" id="<?php echo $this->plugin_name; ?>-source" name="<?php echo $this->plugin_name; ?>[source]" value="<?php print($options['source']); ?>"  class="regular-text"/>
-        </fieldset>
+        <table class="form-table">
+            <tbody>
+                <!-- Account ID -->
+                <tr>
+                    <th scope="row">
+                        <legend class="screen-reader-text"><span>Account ID</span></legend>
+                        <label for="<?php echo $this->plugin_name; ?>-account_id">
+                            <span><?php esc_attr_e('Account ID', $this->plugin_name); ?></span>
+                        </label>
+                    </th>
+                    <td>
+                        <input type="text" id="<?php echo $this->plugin_name; ?>-account_id" name="<?php echo $this->plugin_name; ?>[account_id]" value="<?php print($options['account_id']); ?>"  class="regular-text"/>
+                    </td>
+                </tr>
+                <!-- Mailing List ID -->
+                <tr>
+                    <th scope="row">
+                        <legend class="screen-reader-text"><span>Mailing List ID</span></legend>
+                        <label for="<?php echo $this->plugin_name; ?>-mailing_list_id">
+                            <span><?php esc_attr_e('Mailing List ID', $this->plugin_name); ?></span>
+                        </label>
+                    </th>
+                    <td>
+                        <input type="text" id="<?php echo $this->plugin_name; ?>-mailing_list_id" name="<?php echo $this->plugin_name; ?>[mailing_list_id]" value="<?php print($options['mailing_list_id']); ?>"  class="regular-text"/>
+                    </td>
+                </tr>
+                <!-- Username -->
+                <tr>
+                    <th scope="row">
+                        <legend class="screen-reader-text"><span>Username</span></legend>
+                        <label for="<?php echo $this->plugin_name; ?>-username">
+                            <span><?php esc_attr_e('Username', $this->plugin_name); ?></span>
+                        </label>
+                    </th>
+                    <td>
+                        <input type="text" id="<?php echo $this->plugin_name; ?>-username" name="<?php echo $this->plugin_name; ?>[username]" value="<?php print($options['username']); ?>"  class="regular-text"/>
+                    </td>
+                </tr>
+                <!-- Password -->
+                <tr>
+                    <th scope="row">
+                        <legend class="screen-reader-text"><span>Password</span></legend>
+                        <label for="<?php echo $this->plugin_name; ?>-password">
+                            <span><?php esc_attr_e('Password', $this->plugin_name); ?></span>
+                        </label>
+                    </th>
+                    <td>
+                        <input type="text" id="<?php echo $this->plugin_name; ?>-password" name="<?php echo $this->plugin_name; ?>[password]" value="<?php print($options['password']); ?>"  class="regular-text"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         
         <?php submit_button('Save all changes', 'primary','submit', TRUE); ?>
 

@@ -175,9 +175,10 @@ class CE_CSJS {
 
 		$plugin_public = new CE_CSJS_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
         
+        require_once(ABSPATH . 'wp-admin/includes/plugin.php');
         if (is_plugin_active('ninja-forms/ninja-forms.php')) {
             // load ninja forms hook
             $this->loader->add_filter('nf_notification_types', $plugin_public, 'ninjaforms_action_subscribe');
@@ -223,6 +224,19 @@ class CE_CSJS {
 	public function get_version() {
 		return $this->version;
 	}
-
+    
+    /**
+     * Send an email to the blog admin informing them there is a problem in the config
+     * 
+     * @param array|string $errors The error (string) or errors (array of strings) to send out
+     */
+    public static function notify_admin($errors)
+    {
+        $to = get_option('admin_email');
+        $subject = 'Website CE-CSJS plugin error';
+        $message = "The CE-CSJS Wordpress plugin seems to have a configuration problem which is affecting website users. See the details below: \n\n";
+        $message .= (is_array($errors)) ? implode("\n", $errors) : $errors;
+        wp_mail($to, $subject, $message);
+    }
 }
 

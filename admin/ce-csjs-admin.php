@@ -163,7 +163,8 @@ class CE_CSJS_Admin {
         return [
             'account_id'        => absint($input['api_account_idkey']),
             'mailing_list_id'   => absint($input['mailing_list_id']),
-            'source'            => sanitize_text_field($input['source'])
+            'username'          => sanitize_text_field($input['username']),
+            'password'          => sanitize_text_field($input['password'])
         ];
     }
 
