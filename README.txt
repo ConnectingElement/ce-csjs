@@ -19,14 +19,14 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
+= 1.0.4 =
+* Restrict usage to ninja forms 2.9.x codebase 
+* Bug fixes and code tidying
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
+= 1.0 =
+* Initial version
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-This is the initial version of the plugin
+= 1.0.4 =
+Restrict usage to ninja forms 2.9.x due to problems in the 3.x codebase

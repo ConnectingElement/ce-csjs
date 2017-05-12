@@ -73,31 +73,28 @@ class Smashing_Updater {
 		add_filter( 'upgrader_post_install', array( $this, 'after_install' ), 10, 3 );
 	}
 
-	public function modify_transient( $transient ) {
+	public function modify_transient( $transient )
+    {
+		if (property_exists($transient, 'checked')) { // Check if transient has a checked property
+			if ($checked = $transient->checked) { // Did Wordpress check for updates?
+                if (array_key_exists($this->basename, $checked)) {
+                    $this->get_repository_info(); // Get the repo info
 
-		if( property_exists( $transient, 'checked') ) { // Check if transient has a checked property
+                    $out_of_date = version_compare($this->github_response['tag_name'], $checked[$this->basename], 'gt'); // Check if we're out of date
+                    if ($out_of_date) {
+                        $new_files = $this->github_response['zipball_url']; // Get the ZIP
+                        $slug = current(explode('/', $this->basename)); // Create valid slug
 
-			if( $checked = $transient->checked ) { // Did Wordpress check for updates?
+                        $plugin = array( // setup our plugin info
+                            'url'           => $this->plugin["PluginURI"],
+                            'slug'          => $slug,
+                            'package'       => $new_files,
+                            'new_version'   => $this->github_response['tag_name']
+                        );
 
-				$this->get_repository_info(); // Get the repo info
-
-				$out_of_date = version_compare( $this->github_response['tag_name'], $checked[ $this->basename ], 'gt' ); // Check if we're out of date
-
-				if( $out_of_date ) {
-
-					$new_files = $this->github_response['zipball_url']; // Get the ZIP
-
-					$slug = current( explode('/', $this->basename ) ); // Create valid slug
-
-					$plugin = array( // setup our plugin info
-						'url' => $this->plugin["PluginURI"],
-						'slug' => $slug,
-						'package' => $new_files,
-						'new_version' => $this->github_response['tag_name']
-					);
-
-					$transient->response[$this->basename] = (object) $plugin; // Return it in response
-				}
+                        $transient->response[$this->basename] = (object) $plugin; // Return it in response
+                    }
+                }
 			}
 		}
 
@@ -116,12 +113,12 @@ class Smashing_Updater {
 				$plugin = array(
 					'name'				=> $this->plugin["Name"],
 					'slug'				=> $this->basename,
-					'requires'					=> '3.3',
-					'tested'						=> '4.4.1',
-					'rating'						=> '100.0',
-					'num_ratings'				=> '10823',
-					'downloaded'				=> '14249',
-					'added'							=> '2016-01-05',
+					//'requires'			=> '3.3',
+					//'tested'			=> '4.4.1',
+					//'rating'			=> '100.0',
+					//'num_ratings'		=> '10823',
+					//'downloaded'		=> '14249',
+					//'added'				=> '2016-01-05',
 					'version'			=> $this->github_response['tag_name'],
 					'author'			=> $this->plugin["AuthorName"],
 					'author_profile'	=> $this->plugin["AuthorURI"],

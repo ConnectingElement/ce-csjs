@@ -30,6 +30,7 @@ class CE_CSJS_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
+        /** @todo we need to deactivate any ninjaform actions that are using our action */
         
 	}
 

@@ -3,7 +3,7 @@
 /**
  * Class NF_Action_Custom
  */
-final class NF_Actions_Custom_CE_CSJS extends NF_Abstracts_Action
+final class NF_Actions_Custom_CE_CSJS extends NF_Abstracts_ActionNewsletter
 {
     /**
      * @var string
@@ -24,6 +24,11 @@ final class NF_Actions_Custom_CE_CSJS extends NF_Abstracts_Action
      * @var int
      */
     protected $_priority = 10;
+    
+    protected $_setting_labels = array(
+        'list'   => 'List',
+        'fields' => 'List Field Mapping',
+    );
 
     /**
      * Constructor
@@ -32,31 +37,47 @@ final class NF_Actions_Custom_CE_CSJS extends NF_Abstracts_Action
     {
         parent::__construct();
 
-        $this->_nicename = __( 'WP Hook', 'ninja-forms' );
-
-        $settings = Ninja_Forms::config( 'ActionCustomSettings' );
-
-        $this->_settings = array_merge( $this->_settings, $settings );
+        $this->_nicename = __( 'Subscribe to CSJS', 'ce-capi' );
     }
-
-    /*
-    * PUBLIC METHODS
-    */
+    
+    public function get_lists()
+    {
+        $options = get_option('ce-csjs');
+        
+        return [
+            [
+                'value'     => $options['mailing_list_id'],
+                'label'     => 'CSJS Mailing List ID ' . $options['mailing_list_id'],
+                'fields'    => [
+                    [
+                        'value' => 'field_id_title',
+                        'label' => __( 'Ninja Forms Field ID for Title', 'ce-csjs' )
+                    ],
+                    [
+                        'value' => 'field_id_forename',
+                        'label' => __( 'Ninja Forms Field ID for Forename', 'ce-csjs' )
+                    ],
+                    [
+                        'value' => 'field_id_surname',
+                        'label' => __( 'Ninja Forms Field ID for Surname', 'ce-csjs' )
+                    ],
+                    [
+                        'value' => 'field_id_email',
+                        'label' => __( 'Ninja Forms Field ID for Email', 'ce-csjs' )
+                    ],
+                ]
+            ]
+        ];
+    }
 
     public function save( $action_settings )
     {
-
+        error_log('save was called with: ' . var_export($action_settings, true));
     }
 
     public function process( $action_settings, $form_id, $data )
     {
-        if( isset( $action_settings[ 'tag' ] ) ) {
-            ob_start(); // Use the Output Buffer to suppress output
-
-            do_action($action_settings[ 'tag' ], $data);
-
-            ob_end_clean();
-        }
+        error_log('process called with args ' . var_export(func_get_args(), true));
 
         return $data;
     }

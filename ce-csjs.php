@@ -14,9 +14,9 @@
  *
  * @wordpress-plugin
  * Plugin Name:       CE CSJS
- * Plugin URI:        https://wp-plugins.ce-admin.co.uk/ce-csjs
+ * Plugin URI:        https://github.com/ConnectingElement/wp-csjs
  * Description:       Connecting Element Central Signup JSON Service integration for Wordpress
- * Version:           1.0.2
+ * Version:           1.0.4
  * Author:            Connecting Element
  * Author URI:        http://www.connectingelement.co.uk
  * Text Domain:       ce-csjs

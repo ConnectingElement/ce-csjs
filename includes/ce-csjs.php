@@ -162,7 +162,40 @@ class CE_CSJS {
         
         // validation hook
         $this->loader->add_action('admin_init', $plugin_admin, 'options_update');
+        
+        // config setup hook, if config isnt right
+        if (!$this->options_valid()) {
+            $this->loader->add_action('admin_notices', $plugin_admin, 'admin_notice_config');
+        }
+        
+        require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+        if (is_plugin_active('ninja-forms/ninja-forms.php')) {
+            // load ninja forms hook
+            if (!get_option('ninja_forms_load_deprecated', true)) {
+                $this->loader->add_action('admin_notices', $plugin_admin, 'admin_notice_ninjaforms3');
+            }
+        }
 	}
+    
+    /**
+     * Check the plugin is configured properly
+     * 
+     * @since   1.0.3
+     * @access  protected
+     * @return boolean True if valid, false if not
+     */
+    protected function options_valid()
+    {
+        $options = get_option($this->plugin_name);
+        if (!is_array($options)) return false;
+        
+        if (!array_key_exists('account_id', $options) || !$options['account_id'] || !absint($options['account_id'])) return false;
+        if (!array_key_exists('mailing_list_id', $options) || !$options['mailing_list_id'] || !absint($options['mailing_list_id'])) return false;
+        if (!array_key_exists('username', $options) || !$options['username']) return false;
+        if (!array_key_exists('password', $options) || !$options['password']) return false;
+        
+        return true;
+    }
 
 	/**
 	 * Register all of the hooks related to the public-facing functionality
@@ -181,7 +214,9 @@ class CE_CSJS {
         require_once(ABSPATH . 'wp-admin/includes/plugin.php');
         if (is_plugin_active('ninja-forms/ninja-forms.php')) {
             // load ninja forms hook
-            $this->loader->add_filter('nf_notification_types', $plugin_public, 'ninjaforms_action_subscribe');
+            if (get_option('ninja_forms_load_deprecated', true)) {
+                $this->loader->add_filter('nf_notification_types', $plugin_public, 'ninjaforms_action_subscribe');
+            }
         }
 	}
 

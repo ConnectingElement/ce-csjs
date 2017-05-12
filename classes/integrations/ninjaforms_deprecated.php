@@ -128,7 +128,7 @@ class NF_Action_Custom_CE_CSJS extends NF_Notification_Base_Type
                 'forename'      => $ninja_forms_processing->get_field_value($field_id_forename),
                 'surname'       => $ninja_forms_processing->get_field_value($field_id_surname),
                 'email'         => $ninja_forms_processing->get_field_value($field_id_email),
-                'source'        => $options['source'],
+                'source'        => $source,
                 'mailing_lists' => [
                     [
                         'mailinglistid'     => $options['mailing_list_id'],

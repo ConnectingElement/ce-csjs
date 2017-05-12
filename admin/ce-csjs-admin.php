@@ -132,7 +132,32 @@ class CE_CSJS_Admin {
         '<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_name ) . '">' . __('Settings', $this->plugin_name) . '</a>',
        );
        return array_merge($settings_link, $links);
-
+    }
+    
+    /**
+     * Output a notice for incomplete configuration
+     * 
+     * @since 1.0.3
+     */
+    public function admin_notice_config()
+    {
+        printf('<div class="error notice">
+                    <p>The <a href="%s">%s plugin configuration</a> has not been completed yet.</p>
+                </div>',
+                menu_page_url($this->plugin_name, false), $this->plugin_name);
+    }
+    
+    /**
+     * Output a notice for ninja forms 3 being unsupported due to their actions system being broken for custom actions
+     * 
+     * @since 1.0.4
+     */
+    public function admin_notice_ninjaforms3()
+    {
+        printf('<div class="error notice">
+                    <p>The CSJS plugin is not compatible with Ninjaforms THREE. Please <a href="%s">rollback to the 2.9.x codebase for Ninjaforms</a>.</p>
+                </div>',
+                menu_page_url('ninja-forms-settings', false));
     }
 
    /**
@@ -161,7 +186,7 @@ class CE_CSJS_Admin {
      */
     public function validate($input) { 
         return [
-            'account_id'        => absint($input['api_account_idkey']),
+            'account_id'        => absint($input['account_id']),
             'mailing_list_id'   => absint($input['mailing_list_id']),
             'username'          => sanitize_text_field($input['username']),
             'password'          => sanitize_text_field($input['password'])
