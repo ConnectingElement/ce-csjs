@@ -16,6 +16,9 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 1.0.6 =
+* Move the settings page to the top level menu instead of hidden as a submenu under settings
+
 = 1.0.5 =
 * Fixed a broken link to the ninja forms settings page on the downgrade notice
 

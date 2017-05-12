@@ -115,7 +115,7 @@ class CE_CSJS_Admin {
          *        Administration Menus: http://codex.wordpress.org/Administration_Menus
          *
          */
-        add_options_page('CE CSJS Integration Settings', 'CE CSJS', 'manage_options', $this->plugin_name, [$this, 'display_plugin_setup_page']);
+        add_menu_page('CE CSJS Integration Settings', 'CE CSJS', 'manage_options', $this->plugin_name, [$this, 'display_plugin_setup_page'], 'dashicons-email-alt', 42);
     }
 
     /**
