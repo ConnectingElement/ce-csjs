@@ -1,8 +1,5 @@
 === CE - CSJS ===
-Tags: comments, spam
-Requires at least: 4.7.0
-Tested up to: 3.4
-Stable tag: 4.3
+Tags: signup, csjs, connectingelement
 
 Connecting Element CSJS wordpress integration
 
@@ -19,6 +16,9 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 1.0.5 =
+* Fixed a broken link to the ninja forms settings page on the downgrade notice
+
 = 1.0.4 =
 * Restrict usage to ninja forms 2.9.x codebase 
 * Bug fixes and code tidying
@@ -26,7 +26,3 @@ This section describes how to install the plugin and get it working.
 = 1.0 =
 * Initial version
 
-== Upgrade Notice ==
-
-= 1.0.4 =
-Restrict usage to ninja forms 2.9.x due to problems in the 3.x codebase

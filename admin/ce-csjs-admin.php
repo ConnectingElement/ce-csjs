@@ -157,7 +157,7 @@ class CE_CSJS_Admin {
         printf('<div class="error notice">
                     <p>The CSJS plugin is not compatible with Ninjaforms THREE. Please <a href="%s">rollback to the 2.9.x codebase for Ninjaforms</a>.</p>
                 </div>',
-                menu_page_url('ninja-forms-settings', false));
+                menu_page_url('nf-settings', false));
     }
 
    /**
