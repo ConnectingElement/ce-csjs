@@ -61,14 +61,9 @@ class CE_CSJS_Public {
      * @return \NF_Actions_Custom_CE_CSJS
      */
     function ninjaforms_action_subscribe($types) {
-        if (get_option('ninja_forms_load_deprecated', true)) {
-            require_once(plugin_dir_path(__DIR__) . 'classes/integrations/ninjaforms_deprecated.php');
-            $types['ce_csjs_action_subscribe'] = new NF_Action_Custom_CE_CSJS();
-        } /*else {
-            require_once(WP_PLUGIN_DIR  . '/ninja-forms/ninja-forms.php');
-            require_once(plugin_dir_path(__DIR__) . 'classes/integrations/NF_Actions_Custom_CE_CSJS.php');
-            $types['ce_csjs_action_subscribe'] = new NF_Actions_Custom_CE_CSJS();
-        }*/
+		require_once(WP_PLUGIN_DIR  . '/ninja-forms/ninja-forms.php');
+		require_once(plugin_dir_path(__DIR__) . 'classes/integrations/NF_Actions_Custom_CE_CSJS.php');
+		$types['Subscribe to CSJS'] = new NF_Actions_Custom_CE_CSJS();
         return $types;
     }
 }

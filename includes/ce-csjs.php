@@ -171,7 +171,7 @@ class CE_CSJS {
         require_once(ABSPATH . 'wp-admin/includes/plugin.php');
         if (is_plugin_active('ninja-forms/ninja-forms.php')) {
             // load ninja forms hook
-            if (!get_option('ninja_forms_load_deprecated', true)) {
+            if (version_compare(get_option('ninja_forms_version', '0.0.0'), '3.6.3', '<')) {
                 $this->loader->add_action('admin_notices', $plugin_admin, 'admin_notice_ninjaforms3');
             }
         }
@@ -208,16 +208,8 @@ class CE_CSJS {
 
 		$plugin_public = new CE_CSJS_Public( $this->get_plugin_name(), $this->get_version() );
 
-		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-        
-        require_once(ABSPATH . 'wp-admin/includes/plugin.php');
-        if (is_plugin_active('ninja-forms/ninja-forms.php')) {
-            // load ninja forms hook
-            if (get_option('ninja_forms_load_deprecated', true)) {
-                $this->loader->add_filter('nf_notification_types', $plugin_public, 'ninjaforms_action_subscribe');
-            }
-        }
+		// load ninja forms hook
+		$this->loader->add_filter('ninja_forms_register_actions', $plugin_public, 'ninjaforms_action_subscribe');
 	}
 
 	/**

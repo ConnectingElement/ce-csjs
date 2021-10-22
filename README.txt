@@ -1,5 +1,7 @@
 === CE - CSJS ===
 Tags: signup, csjs, connectingelement
+Tested up to: 5.8.1
+Stable tag: 1.0.7
 
 Connecting Element CSJS wordpress integration
 
@@ -15,6 +17,9 @@ This section describes how to install the plugin and get it working.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.0.7 =
+* Update the plugin to be compatible with the latest Ninja Forms version
 
 = 1.0.6 =
 * Move the settings page to the top level menu instead of hidden as a submenu under settings
