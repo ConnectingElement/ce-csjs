@@ -1,7 +1,7 @@
 === CE - CSJS ===
 Tags: signup, csjs, connectingelement
 Tested up to: 5.8.1
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 
 Connecting Element CSJS wordpress integration
 
@@ -17,6 +17,9 @@ This section describes how to install the plugin and get it working.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.0.8 =
+* Moved the mailing list ID to be a form setting so that the plugin can send to multiple mailing lists
 
 = 1.0.7 =
 * Update the plugin to be compatible with the latest Ninja Forms version

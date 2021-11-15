@@ -39,7 +39,7 @@ final class NF_Actions_Custom_CE_CSJS extends NF_Abstracts_Action
                 'name'           => 'field_id_title',
                 'type'           => 'field-select',
                 'group'          => 'primary',
-                'label'          => esc_html__( 'Select field containing user\'s title'),
+                'label'          => esc_html__( 'Field containing user\'s title'),
                 'value'          => esc_html__( 'The field in the form that contains the user\'s title'),
                 'width'          => 'full',
                 'use_merge_tags' => true,
@@ -48,7 +48,7 @@ final class NF_Actions_Custom_CE_CSJS extends NF_Abstracts_Action
                 'name'           => 'field_id_forename',
                 'type'           => 'field-select',
                 'group'          => 'primary',
-                'label'          => esc_html__( 'Select field containing user\'s forename'),
+                'label'          => esc_html__( 'Field containing user\'s forename'),
                 'value'          => esc_html__( 'The field in the form that contains the user\'s forename'),
                 'width'          => 'full',
                 'use_merge_tags' => true,
@@ -57,7 +57,7 @@ final class NF_Actions_Custom_CE_CSJS extends NF_Abstracts_Action
                 'name'           => 'field_id_surname',
                 'type'           => 'field-select',
                 'group'          => 'primary',
-                'label'          => esc_html__( 'Select field containing user\'s surname'),
+                'label'          => esc_html__( 'Field containing user\'s surname'),
                 'value'          => esc_html__( 'The field in the form that contains the user\'s surname'),
                 'width'          => 'full',
                 'use_merge_tags' => true,
@@ -66,8 +66,17 @@ final class NF_Actions_Custom_CE_CSJS extends NF_Abstracts_Action
                 'name'           => 'field_id_email',
                 'type'           => 'field-select',
                 'group'          => 'primary',
-                'label'          => esc_html__( 'Select field containing user\'s E-mail address'),
+                'label'          => esc_html__( 'Field containing user\'s E-mail address'),
                 'value'          => esc_html__( 'The field in the form that contains the user\'s E-mail address'),
+                'width'          => 'full',
+                'use_merge_tags' => true,
+            ),
+            'mailing_list_id'   => array(
+                'name'           => 'mailing_list_id',
+                'type'           => 'textbox',
+                'group'          => 'primary',
+                'label'          => esc_html__( 'Mailing list ID'),
+                'value'          => '',
                 'width'          => 'full',
                 'use_merge_tags' => true,
             ),
@@ -109,6 +118,9 @@ final class NF_Actions_Custom_CE_CSJS extends NF_Abstracts_Action
         if (!$action_settings['field_id_email']) {
             $errors[] = 'The email field is not valid.';
         }
+        if (!$action_settings['mailing_list_id']) {
+            $errors[] = 'The mailing list ID field is not valid.';
+        }
         if (!$action_settings['csjs_source']) {
             $errors[] = 'The source setting is not valid.';
         }
@@ -131,7 +143,7 @@ final class NF_Actions_Custom_CE_CSJS extends NF_Abstracts_Action
                 'source'        => $action_settings['csjs_source'],
                 'mailing_lists' => [
                     [
-                        'mailinglistid'     => $options['mailing_list_id'],
+                        'mailinglistid'     => $action_settings['mailing_list_id'],
                         'action'            => CSJSConsumer::MAILING_LIST_ACTION_SUBSCRIBE
                     ]
                 ]

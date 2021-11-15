@@ -190,7 +190,6 @@ class CE_CSJS {
         if (!is_array($options)) return false;
         
         if (!array_key_exists('account_id', $options) || !$options['account_id'] || !absint($options['account_id'])) return false;
-        if (!array_key_exists('mailing_list_id', $options) || !$options['mailing_list_id'] || !absint($options['mailing_list_id'])) return false;
         if (!array_key_exists('username', $options) || !$options['username']) return false;
         if (!array_key_exists('password', $options) || !$options['password']) return false;
         

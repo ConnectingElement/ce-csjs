@@ -37,18 +37,6 @@
                         <input type="text" id="<?php echo $this->plugin_name; ?>-account_id" name="<?php echo $this->plugin_name; ?>[account_id]" value="<?php print($options['account_id']); ?>"  class="regular-text"/>
                     </td>
                 </tr>
-                <!-- Mailing List ID -->
-                <tr>
-                    <th scope="row">
-                        <legend class="screen-reader-text"><span>Mailing List ID</span></legend>
-                        <label for="<?php echo $this->plugin_name; ?>-mailing_list_id">
-                            <span><?php esc_attr_e('Mailing List ID', $this->plugin_name); ?></span>
-                        </label>
-                    </th>
-                    <td>
-                        <input type="text" id="<?php echo $this->plugin_name; ?>-mailing_list_id" name="<?php echo $this->plugin_name; ?>[mailing_list_id]" value="<?php print($options['mailing_list_id']); ?>"  class="regular-text"/>
-                    </td>
-                </tr>
                 <!-- Username -->
                 <tr>
                     <th scope="row">

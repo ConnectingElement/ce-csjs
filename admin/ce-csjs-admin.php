@@ -176,8 +176,29 @@ class CE_CSJS_Admin {
      */
     public function options_update() {
         register_setting($this->plugin_name, $this->plugin_name, array($this, 'validate'));
+
+        /**
+         * Version 1.0.8
+         * Update the mailing list id from the plugin options to the Ninja Forms subscribe action
+         */
+        $options = get_option('ce-csjs');
+        if (array_key_exists('mailing_list_id', $options)) {
+            $allForms = Ninja_Forms()->form()->get_forms();
+            foreach ($allForms as $form) {
+                $actions = Ninja_Forms()->form($form->get_id())->get_actions();
+                foreach ($actions as $action) {
+                    $type = $action->get_setting( 'type' );;
+                    if ($type === 'Subscribe to CSJS') {
+                        printf('<pre>%s</pre>', var_export($type, true)); 
+                        $action->update_setting('mailing_list_id', $options['mailing_list_id'])->save();
+                    }
+                }
+            }
+            unset($options['mailing_list_id']);
+            update_option('ce-csjs', $options);
+        }
      }
-    
+
     /**
      * Validates the given settings
      * 
@@ -188,7 +209,6 @@ class CE_CSJS_Admin {
     public function validate($input) { 
         return [
             'account_id'        => absint($input['account_id']),
-            'mailing_list_id'   => absint($input['mailing_list_id']),
             'username'          => sanitize_text_field($input['username']),
             'password'          => sanitize_text_field($input['password'])
         ];
